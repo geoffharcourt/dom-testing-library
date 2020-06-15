@@ -465,10 +465,11 @@ describe('query by test id', () => {
   })
 
   test('can override test id attribute', () => {
-    const {queryByTestId} = render(`<div data-my-test-id="theTestId"></div>`)
+    const {getByTestId, queryByTestId} = render(`<div data-my-test-id="theTestId"></div>`)
 
     configure({testIdAttribute: 'data-my-test-id'})
     expect(queryByTestId('theTestId')).toBeTruthy()
+    expect(getByTestId('theTestId')).toBeTruthy()
 
     configure({testIdAttribute: 'something-else'})
     expect(queryByTestId('theTestId')).toBeFalsy()
